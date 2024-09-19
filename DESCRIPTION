@@ -1,0 +1,19 @@
+Package: lme4.tzh
+Type: Package
+Title: Tingting's extension of lme4 package
+Version: 0.1.0
+Date: 2024-09-10
+Description: Tingting's extension of lme4 package.
+Authors@R: c(person(given = 'Tingting', family = 'Zhan',
+      role = c('aut', 'cre', 'cph'), email =
+      c('tingtingzhan@gmail.com',
+      'tingting.zhan@jefferson.edu'), comment = c(ORCID =
+      '0000-0001-9971-4844')))
+Language: en-US
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Encoding: UTF-8
+License: GPL-2
+Depends: R (>= 4.4)
+Imports: lme4, nlme
+Suggests: lmerTest
