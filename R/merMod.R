@@ -29,13 +29,6 @@
   xsum$coefficients[, 'Pr(>|z|)']
 }
 
-# not sure if still needed
-# @export
-# .pval.lmerModLmerTest <- function(x) .Defunct(msg = 'write .pval(summary(**))')
-
-# not sure if still needed
-# @export
-# .pval.lmerMod <- function(x) stop('Use lmerTest::lmer (\'lmerModLmerTest\') instead of lme4::lmer')
 
 
 #' @rdname s3_merMod
@@ -83,6 +76,8 @@ confint2.merMod <- function(object, method = 'Wald', ...) {
   ci[names(coef0.merMod(object)), , drop = FALSE]
 }
 
+
+
 #' @rdname s3_merMod
 #' @importFrom lme4 ngrps
 #' @export nobsText.merMod
@@ -91,7 +86,7 @@ nobsText.merMod <- function(x) {
   # ?lme4:::.prt.grps (from ?lme4:::print.merMod)
   # or ?lme4:::nobs.merMod
   dims <- x@devcomp$dims
-  ng <- ngrps(x)
+  ng <- ngrps(x) # ?lme4:::ngrps.merMod
   sprintf(fmt = '%d records from %s', 
           dims[['n']],
           paste(sprintf(fmt = '%d `%s`', ng, names(ng)), collapse = ' nested in '))

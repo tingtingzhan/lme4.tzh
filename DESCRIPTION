@@ -16,4 +16,4 @@ Encoding: UTF-8
 License: GPL-2
 Depends: R (>= 4.4)
 Imports: lme4, nlme
-Suggests: lmerTest
+Suggests: robustlmm
