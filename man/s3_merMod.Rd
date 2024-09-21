@@ -8,6 +8,7 @@
 \alias{coef0.merMod}
 \alias{confint2.merMod}
 \alias{nobsText.merMod}
+\alias{Sprintf.merMod}
 \alias{coef0.rlmerMod}
 \title{Additional S3 Method Dispatches for \link[lme4]{merMod} Class}
 \usage{
@@ -23,10 +24,12 @@ confint2.merMod(object, method = "Wald", ...)
 
 nobsText.merMod(x)
 
+Sprintf.merMod(model, ...)
+
 coef0.rlmerMod(x)
 }
 \arguments{
-\item{x, object}{a \link[lme4]{merMod} object}
+\item{x, object, model}{a \link[lme4]{merMod} object}
 
 \item{...}{..}
 
@@ -40,6 +43,12 @@ coef0.rlmerMod(x)
 library(lme4)
 class(m1 <- glmer(cbind(incidence, size - incidence) ~ period + (1 | herd), 
   data = cbpp, family = binomial))
+  
 .pval.merMod(m1)
+model_desc.glmerMod(m1)
+coef0.merMod(m1)
+confint2.merMod(m1)
+nobsText.merMod(m1)
+Sprintf.merMod(m1)
 
 }

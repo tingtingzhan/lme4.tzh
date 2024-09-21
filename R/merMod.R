@@ -4,7 +4,7 @@
 #' @description
 #' ..
 #' 
-#' @param x,object a \link[lme4]{merMod} object
+#' @param x,object,model a \link[lme4]{merMod} object
 #' 
 #' @param method ..
 #' 
@@ -15,7 +15,13 @@
 #' library(lme4)
 #' class(m1 <- glmer(cbind(incidence, size - incidence) ~ period + (1 | herd), 
 #'   data = cbpp, family = binomial))
+#'   
 #' .pval.merMod(m1)
+#' model_desc.glmerMod(m1)
+#' coef0.merMod(m1)
+#' confint2.merMod(m1)
+#' nobsText.merMod(m1)
+#' Sprintf.merMod(m1)
 #' 
 #' @name s3_merMod
 
@@ -37,7 +43,7 @@
 #' @export
 model_desc.glmerMod <- function(x, ...) {
   fam <- family(x) # ?lme4:::family.merMod
-  if (fam$family == 'binomial' && fam$link == 'logit') return('mixed logistic regression model')
+  if (fam$family == 'binomial' && fam$link == 'logit') return('mixed logistic regression')
   stop('write more')
 }
 
@@ -104,15 +110,7 @@ nobsText.merMod <- function(x) {
 
 
 
-
-#' @title Sprintf.merMod
-#' 
-#' @description ..
-#' 
-#' @param model ..
-#' 
-#' @param ... ..
-#' 
+#' @rdname s3_merMod
 #' @importFrom stats formula terms.formula
 #' @export Sprintf.merMod
 #' @export
@@ -123,12 +121,12 @@ Sprintf.merMod <- function(model, ...) {
   xvar <- unique.default(all.vars(ffom[[3L]]))
   
   if (FALSE) { # KEEP FOR NOW!!
-    ranfom <- formula(model, random.only = TRUE) # ?lme4:::formula.merMod
+    rfom <- formula(model, random.only = TRUE) # ?lme4:::formula.merMod
     # random effects should be represented in [nobsText.merMod]
-    # ranfom = y ~ (1 | a/b/c) # tested
-    # ranfom = y ~ (1 | herd) # tested
-    # ranfom = y ~ (1 | herd) + (1 | obs) # tested
-    ranterms <- as.list.default(attr(terms.formula(ranfom), which = 'variables', exact = TRUE))[-(1:2)]
+    # rfom = y ~ (1 | a/b/c) # tested
+    # rfom = y ~ (1 | herd) # tested
+    # rfom = y ~ (1 | herd) + (1 | obs) # tested
+    ranterms <- as.list.default(attr(terms.formula(rfom), which = 'variables', exact = TRUE))[-(1:2)]
     nestedText <- function(x) {
       if (is.symbol(x)) return(deparse1(x))
       if (x[[1L]] == '/') {
@@ -148,7 +146,7 @@ Sprintf.merMod <- function(model, ...) {
     paste0('`', xvar, '`', collapse = ', '),
     nobsText.merMod(model),
     if (length(xvar) > 1L) 'multi' else 'uni',
-    model_desc.merMod(model)
+    if (inherits(model, 'glmerMod')) model_desc.glmerMod(model) else model_desc.merMod(model)
   )
 }
 

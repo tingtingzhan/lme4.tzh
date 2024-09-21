@@ -20,7 +20,7 @@
 #' @examples
 #' # ?robustlmm::rlmer
 #' library(robustlmm)
-#' m1 = rlmer(Reaction ~ Days + (Days|Subject), data = sleepstudy,
+#' rm1 = rlmer(Reaction ~ Days + (Days|Subject), data = sleepstudy,
 #'  rho.sigma.e = psi2propII(smoothPsi, k = 2.28),
 #'  rho.b = chgDefaults(smoothPsi, k = 5.14, s=10),
 #'  rho.sigma.b = chgDefaults(smoothPsi, k = 5.14, s=10))
