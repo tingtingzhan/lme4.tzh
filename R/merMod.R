@@ -153,5 +153,32 @@ Sprintf.merMod <- function(model, ...) {
 
 
 
+#' @title rmd_.merMod
+#' 
+#' @param x a \link[lme4]{merMod} object
+#' 
+#' @param xnm ..
+#' 
+#' @param autofold \link[base]{logical} scalar
+#' 
+#' @param ... ..
+#' 
+#' @export rmd_.merMod
+#' @export
+rmd_.merMod <- function(x, xnm, autofold = TRUE, ...) {
+  return(c(
+    Sprintf.merMod(x),
+    if (autofold) '<details><summary>**Expand for Regression Model Estimates**</summary>',
+    '```{r results = \'asis\'}', 
+    sprintf(fmt = 'as_flextable.cibeta(cibeta(%s))', xnm),
+    '```', 
+    '</details>',
+    '<any-text>'
+  ))
+}
+
+
+
+
 
 
