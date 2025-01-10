@@ -43,8 +43,15 @@
 #' @export
 model_desc.glmerMod <- function(x, ...) {
   fam <- family(x) # ?lme4:::family.merMod
-  if (fam$family == 'binomial' && fam$link == 'logit') return('mixed logistic regression')
-  stop('write more')
+  switch(fam$family, binomial = {
+    switch(fam$link, logit = {
+      return('mixed logistic regression')
+    }, stop('write more'))
+  }, gaussian = {
+    switch(fam$link, log = {
+      'generalized linear mixed regression with log-link'
+    }, stop('write more'))
+  }, stop('write more'))
 }
 
 #' @rdname s3_merMod
