@@ -24,12 +24,12 @@ confint2.merMod(object, method = "Wald", ...)
 
 nobsText.merMod(x)
 
-Sprintf.merMod(model, ...)
+Sprintf.merMod(x)
 
 coef0.rlmerMod(x)
 }
 \arguments{
-\item{x, object, model}{a \link[lme4]{merMod} object}
+\item{x, object}{a \link[lme4]{merMod} object}
 
 \item{method}{..}
 

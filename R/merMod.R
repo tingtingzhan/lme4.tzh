@@ -4,7 +4,7 @@
 #' @description
 #' ..
 #' 
-#' @param x,object,model a \link[lme4]{merMod} object
+#' @param x,object a \link[lme4]{merMod} object
 #' 
 #' @param method ..
 #' 
@@ -63,11 +63,6 @@ desc_.merMod <- function(x) {
   tolower(gsub(' fit by .*$', replacement = '', methTitle(x@devcomp$dims)))
 }
 
-# we have
-# lme4:::formula.merMod
-# [endpoint.*] will use [tzh::endpoint.default]
-
-
 
 
 # ?lme4:::coef.merMod not want I need
@@ -121,14 +116,14 @@ nobsText.merMod <- function(x) {
 #' @importFrom stats formula terms.formula
 #' @export Sprintf.merMod
 #' @export
-Sprintf.merMod <- function(model, ...) {
-  ffom <- formula(model, fixed.only = TRUE) # ?lme4:::formula.merMod
+Sprintf.merMod <- function(x) {
+  ffom <- formula(x, fixed.only = TRUE) # ?lme4:::formula.merMod
   
   # no variable selection in \pkg{lme4}, that I am aware of ..
   xvar <- unique.default(all.vars(ffom[[3L]]))
   
   if (FALSE) { # KEEP FOR NOW!!
-    rfom <- formula(model, random.only = TRUE) # ?lme4:::formula.merMod
+    rfom <- formula(x, random.only = TRUE) # ?lme4:::formula.merMod
     # random effects should be represented in [nobsText.merMod]
     # rfom = y ~ (1 | a/b/c) # tested
     # rfom = y ~ (1 | herd) # tested
@@ -151,9 +146,9 @@ Sprintf.merMod <- function(model, ...) {
     fmt = 'The relationship between **`%s`** and %s is analyzed based on %s by fitting a %svariable %s model using <u>**`R`**</u> package <u>**`lme4`**</u>.', 
     deparse1(ffom[[2L]]), 
     paste0('`', xvar, '`', collapse = ', '),
-    nobsText.merMod(model),
+    nobsText.merMod(x),
     if (length(xvar) > 1L) 'multi' else 'uni',
-    if (inherits(model, 'glmerMod')) desc_.glmerMod(model) else desc_.merMod(model)
+    if (inherits(x, 'glmerMod')) desc_.glmerMod(x) else desc_.merMod(x)
   )
 }
 
@@ -166,20 +161,16 @@ Sprintf.merMod <- function(model, ...) {
 #' 
 #' @param xnm ..
 #' 
-#' @param autofold \link[base]{logical} scalar
-#' 
 #' @param ... ..
 #' 
 #' @export rmd_.merMod
 #' @export
-rmd_.merMod <- function(x, xnm, autofold = TRUE, ...) {
+rmd_.merMod <- function(x, xnm, ...) {
   return(c(
     Sprintf.merMod(x),
-    if (autofold) '<details><summary>**Expand for Regression Model Estimates**</summary>',
     '```{r results = \'asis\'}', 
     sprintf(fmt = 'as_flextable.cibeta(cibeta(%s))', xnm),
-    '```', 
-    '</details>',
+    '```',
     '<any-text>'
   ))
 }

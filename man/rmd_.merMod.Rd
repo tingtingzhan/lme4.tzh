@@ -4,14 +4,12 @@
 \alias{rmd_.merMod}
 \title{rmd_.merMod}
 \usage{
-rmd_.merMod(x, xnm, autofold = TRUE, ...)
+rmd_.merMod(x, xnm, ...)
 }
 \arguments{
 \item{x}{a \link[lme4]{merMod} object}
 
 \item{xnm}{..}
-
-\item{autofold}{\link[base]{logical} scalar}
 
 \item{...}{..}
 }
