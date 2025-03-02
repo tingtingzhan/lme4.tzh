@@ -29,9 +29,9 @@
 
 
 #' @rdname s3_rlmerMod
-#' @export model_desc.rlmerMod
+#' @export desc_.rlmerMod
 #' @export
-model_desc.rlmerMod <- function(x, ...) {
+desc_.rlmerMod <- function(x) {
   # ?robustlmm:::print.rlmerMod
   # ?robustlmm:::.methTitle
   'robust linear mixed'

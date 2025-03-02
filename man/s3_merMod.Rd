@@ -3,8 +3,8 @@
 \name{s3_merMod}
 \alias{s3_merMod}
 \alias{.pval.merMod}
-\alias{model_desc.glmerMod}
-\alias{model_desc.merMod}
+\alias{desc_.glmerMod}
+\alias{desc_.merMod}
 \alias{coef0.merMod}
 \alias{confint2.merMod}
 \alias{nobsText.merMod}
@@ -14,9 +14,9 @@
 \usage{
 .pval.merMod(x)
 
-model_desc.glmerMod(x, ...)
+desc_.glmerMod(x)
 
-model_desc.merMod(x, ...)
+desc_.merMod(x)
 
 coef0.merMod(x)
 
@@ -31,9 +31,9 @@ coef0.rlmerMod(x)
 \arguments{
 \item{x, object, model}{a \link[lme4]{merMod} object}
 
-\item{...}{..}
-
 \item{method}{..}
+
+\item{...}{..}
 }
 \description{
 ..
@@ -45,7 +45,7 @@ class(m1 <- glmer(cbind(incidence, size - incidence) ~ period + (1 | herd),
   data = cbpp, family = binomial))
   
 .pval.merMod(m1)
-model_desc.glmerMod(m1)
+desc_.glmerMod(m1)
 coef0.merMod(m1)
 confint2.merMod(m1)
 nobsText.merMod(m1)

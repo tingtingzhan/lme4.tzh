@@ -17,7 +17,7 @@
 #'   data = cbpp, family = binomial))
 #'   
 #' .pval.merMod(m1)
-#' model_desc.glmerMod(m1)
+#' desc_.glmerMod(m1)
 #' coef0.merMod(m1)
 #' confint2.merMod(m1)
 #' nobsText.merMod(m1)
@@ -39,9 +39,9 @@
 
 #' @rdname s3_merMod
 #' @importFrom stats family
-#' @export model_desc.glmerMod
+#' @export desc_.glmerMod
 #' @export
-model_desc.glmerMod <- function(x, ...) {
+desc_.glmerMod <- function(x) {
   fam <- family(x) # ?lme4:::family.merMod
   switch(fam$family, binomial = {
     switch(fam$link, logit = {
@@ -56,9 +56,9 @@ model_desc.glmerMod <- function(x, ...) {
 
 #' @rdname s3_merMod
 #' @importFrom lme4 methTitle
-#' @export model_desc.merMod
+#' @export desc_.merMod
 #' @export
-model_desc.merMod <- function(x, ...) {
+desc_.merMod <- function(x) {
   # see inside ?lme4:::print.merMod
   tolower(gsub(' fit by .*$', replacement = '', methTitle(x@devcomp$dims)))
 }
@@ -153,7 +153,7 @@ Sprintf.merMod <- function(model, ...) {
     paste0('`', xvar, '`', collapse = ', '),
     nobsText.merMod(model),
     if (length(xvar) > 1L) 'multi' else 'uni',
-    if (inherits(model, 'glmerMod')) model_desc.glmerMod(model) else model_desc.merMod(model)
+    if (inherits(model, 'glmerMod')) desc_.glmerMod(model) else desc_.merMod(model)
   )
 }
 

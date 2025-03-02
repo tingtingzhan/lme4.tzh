@@ -2,13 +2,13 @@
 % Please edit documentation in R/rlmerMod.R
 \name{s3_rlmerMod}
 \alias{s3_rlmerMod}
-\alias{model_desc.rlmerMod}
+\alias{desc_.rlmerMod}
 \alias{confint.rlmerMod}
 \alias{ngrps.rlmerMod}
 \alias{nobsText.rlmerMod}
 \title{Additional S3 Method Dispatches for \link[robustlmm]{rlmer} Return}
 \usage{
-model_desc.rlmerMod(x, ...)
+desc_.rlmerMod(x)
 
 \method{confint}{rlmerMod}(object, parm, level = 0.95, ...)
 
@@ -19,9 +19,9 @@ nobsText.rlmerMod(x)
 \arguments{
 \item{x, object}{a \link[lme4]{merMod} object}
 
-\item{...}{additional parameters, currently not in use}
-
 \item{parm, level}{see \link[stats]{confint.default}}
+
+\item{...}{additional parameters, currently not in use}
 }
 \description{
 ..
