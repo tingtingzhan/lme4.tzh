@@ -29,7 +29,6 @@
 
 
 #' @rdname s3_rlmerMod
-#' @export desc_.rlmerMod
 #' @export
 desc_.rlmerMod <- function(x) {
   # ?robustlmm:::print.rlmerMod
@@ -40,7 +39,6 @@ desc_.rlmerMod <- function(x) {
 # ?robustlmm:::coef.rlmerMod not what I want
 #' @rdname s3_merMod
 #' @importFrom nlme fixef
-#' @export coef0.rlmerMod
 #' @export
 coef0.rlmerMod <- function(x) fixef(x)
 
@@ -78,7 +76,6 @@ ngrps.rlmerMod <- function(object, ...) {
 
 
 #' @rdname s3_rlmerMod
-#' @export nobsText.rlmerMod
 #' @export
 nobsText.rlmerMod <- nobsText.merMod 
 

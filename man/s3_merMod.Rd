@@ -3,16 +3,19 @@
 \name{s3_merMod}
 \alias{s3_merMod}
 \alias{.pval.merMod}
+\alias{.pval.summary.merMod}
 \alias{desc_.glmerMod}
 \alias{desc_.merMod}
 \alias{coef0.merMod}
-\alias{confint2.merMod}
+\alias{confint_.merMod}
 \alias{nobsText.merMod}
 \alias{Sprintf.merMod}
 \alias{coef0.rlmerMod}
-\title{Additional S3 Method Dispatches for \link[lme4]{merMod} Class}
+\title{S3 Method Dispatches for \link[lme4]{merMod} Class}
 \usage{
 .pval.merMod(x)
+
+.pval.summary.merMod(x)
 
 desc_.glmerMod(x)
 
@@ -20,7 +23,7 @@ desc_.merMod(x)
 
 coef0.merMod(x)
 
-confint2.merMod(object, method = "Wald", ...)
+confint_.merMod(object, method = "Wald", ...)
 
 nobsText.merMod(x)
 
@@ -43,12 +46,15 @@ coef0.rlmerMod(x)
 library(lme4)
 class(m1 <- glmer(cbind(incidence, size - incidence) ~ period + (1 | herd), 
   data = cbpp, family = binomial))
-  
 .pval.merMod(m1)
 desc_.glmerMod(m1)
 coef0.merMod(m1)
-confint2.merMod(m1)
+confint_.merMod(m1)
 nobsText.merMod(m1)
 Sprintf.merMod(m1)
 
+startvec = c(Asym = 200, xmid = 725, scal = 350)
+(m2 <- nlmer(circumference ~ SSlogis(age, Asym, xmid, scal) ~ Asym|Tree,
+  Orange, start = startvec))
+class(m2)
 }
