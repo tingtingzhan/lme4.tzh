@@ -19,14 +19,16 @@ desc_.merMod(x)
 
 coef0.merMod(x)
 
-confint_.merMod(object, method = "Wald", ...)
+confint_.merMod(x, level = 0.95, method = "Wald", ...)
 
 nobsText.merMod(x)
 
 coef0.rlmerMod(x)
 }
 \arguments{
-\item{x, object}{a \link[lme4]{merMod} object}
+\item{x}{a \link[lme4]{merMod} object}
+
+\item{level}{\link[base]{double} scalar, confidence level}
 
 \item{method}{..}
 

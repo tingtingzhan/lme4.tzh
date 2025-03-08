@@ -4,7 +4,9 @@
 #' @description
 #' ..
 #' 
-#' @param x,object a \link[lme4]{merMod} object
+#' @param x a \link[lme4]{merMod} object
+#' 
+#' @param level \link[base]{double} scalar, confidence level
 #' 
 #' @param method ..
 #' 
@@ -78,9 +80,11 @@ coef0.merMod <- function(x) fixef(x) # ?lme4:::fixef.merMod
 #' @rdname s3_merMod
 #' @importFrom lme4 confint.merMod
 #' @export
-confint_.merMod <- function(object, method = 'Wald', ...) {
-  ci <- confint.merMod(object, method = method, ...)
-  ci[names(coef0.merMod(object)), , drop = FALSE]
+confint_.merMod <- function(x, level = .95, method = 'Wald', ...) {
+  ci <- confint.merMod(object = x, level = level, method = method, ...)
+  ret <- ci[names(coef0.merMod(x)), , drop = FALSE]
+  attr(ret, which = 'conf.level') <- level
+  return(ret)
 }
 
 
