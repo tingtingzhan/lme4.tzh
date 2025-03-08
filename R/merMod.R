@@ -20,7 +20,6 @@
 #' coef0.merMod(m1)
 #' confint_.merMod(m1)
 #' nobsText.merMod(m1)
-#' Sprintf.merMod(m1)
 #' 
 #' startvec = c(Asym = 200, xmid = 725, scal = 350)
 #' (m2 <- nlmer(circumference ~ SSlogis(age, Asym, xmid, scal) ~ Asym|Tree,
@@ -116,73 +115,6 @@ nobsText.merMod <- function(x) {
 # @method vcov VarCorr.merMod
 # @export
 #vcov.VarCorr.merMod <- function(object, ...) unclass(object) # return object of ?lme4:::VarCorr.merMod
-
-
-
-
-
-
-#' @rdname s3_merMod
-#' @importFrom stats formula terms.formula
-#' @export
-Sprintf.merMod <- function(x) {
-  ffom <- formula(x, fixed.only = TRUE) # ?lme4:::formula.merMod
-  
-  # no variable selection in \pkg{lme4}, that I am aware of ..
-  xvar <- unique.default(all.vars(ffom[[3L]]))
-  
-  if (FALSE) { # KEEP FOR NOW!!
-    rfom <- formula(x, random.only = TRUE) # ?lme4:::formula.merMod
-    # random effects should be represented in [nobsText.merMod]
-    # rfom = y ~ (1 | a/b/c) # tested
-    # rfom = y ~ (1 | herd) # tested
-    # rfom = y ~ (1 | herd) + (1 | obs) # tested
-    ranterms <- as.list.default(attr(terms.formula(rfom), which = 'variables', exact = TRUE))[-(1:2)]
-    nestedText <- function(x) {
-      if (is.symbol(x)) return(deparse1(x))
-      if (x[[1L]] == '/') {
-        c(nestedText(x[[2L]]), deparse1(x[[3L]])) # recursive!
-      } else deparse1(x)
-    }
-    ran_txt <- vapply(ranterms, FUN = function(i) { # (i = ranterms[[1L]])
-      if (i[[1L]] != '|') stop('wont happen')
-      paste0('`', nestedText(i[[3L]]), '`', collapse = '-nested-in-')
-    }, FUN.VALUE = '')
-    cat(sprintf(fmt = 'with random effect(s) of %s', paste0(ran_txt, collapse = ' and ')), '\n')
-  } # KEEP FOR NOW!!
-  
-  sprintf(
-    fmt = 'The relationship between **`%s`** and %s is analyzed based on %s by fitting a %svariable %s model using <u>**`R`**</u> package <u>**`lme4`**</u>.', 
-    deparse1(ffom[[2L]]), 
-    paste0('`', xvar, '`', collapse = ', '),
-    nobsText.merMod(x),
-    if (length(xvar) > 1L) 'multi' else 'uni',
-    if (inherits(x, 'glmerMod')) desc_.glmerMod(x) else desc_.merMod(x)
-  )
-}
-
-
-
-
-#' @title rmd_.merMod
-#' 
-#' @param x a \link[lme4]{merMod} object
-#' 
-#' @param xnm ..
-#' 
-#' @param ... ..
-#' 
-#' @export
-rmd_.merMod <- function(x, xnm, ...) {
-  return(c(
-    Sprintf.merMod(x),
-    '```{r results = \'asis\'}', 
-    sprintf(fmt = 'as_flextable.cibeta(cibeta(%s))', xnm),
-    '```',
-    '<any-text>'
-  ))
-}
-
 
 
 

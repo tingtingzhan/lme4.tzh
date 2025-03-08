@@ -9,7 +9,6 @@
 \alias{coef0.merMod}
 \alias{confint_.merMod}
 \alias{nobsText.merMod}
-\alias{Sprintf.merMod}
 \alias{coef0.rlmerMod}
 \title{S3 Method Dispatches for \link[lme4]{merMod} Class}
 \usage{
@@ -26,8 +25,6 @@ coef0.merMod(x)
 confint_.merMod(object, method = "Wald", ...)
 
 nobsText.merMod(x)
-
-Sprintf.merMod(x)
 
 coef0.rlmerMod(x)
 }
@@ -51,7 +48,6 @@ desc_.glmerMod(m1)
 coef0.merMod(m1)
 confint_.merMod(m1)
 nobsText.merMod(m1)
-Sprintf.merMod(m1)
 
 startvec = c(Asym = 200, xmid = 725, scal = 350)
 (m2 <- nlmer(circumference ~ SSlogis(age, Asym, xmid, scal) ~ Asym|Tree,
