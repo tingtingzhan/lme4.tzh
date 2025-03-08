@@ -63,7 +63,7 @@ environment(confint.rlmerMod) <- asNamespace('lme4.tzh') # important!
 # .pval.rlmerMod
 # cran.r-project.org/web/packages/robustlmm/vignettes/rlmer.pdf  # Section 5. Further information
 # 'We avoided the topic of robust testing for linear mixed-eﬀects models in this tutorial.'
-# dispatch to tzh::.pval.default, which is Wald p-value
+
 
 
 #' @rdname s3_rlmerMod

@@ -2,7 +2,6 @@
 % Please edit documentation in R/merMod.R, R/rlmerMod.R
 \name{s3_merMod}
 \alias{s3_merMod}
-\alias{.pval.merMod}
 \alias{.pval.summary.merMod}
 \alias{desc_.glmerMod}
 \alias{desc_.merMod}
@@ -12,8 +11,6 @@
 \alias{coef0.rlmerMod}
 \title{S3 Method Dispatches for \link[lme4]{merMod} Class}
 \usage{
-.pval.merMod(x)
-
 .pval.summary.merMod(x)
 
 desc_.glmerMod(x)
@@ -43,7 +40,6 @@ coef0.rlmerMod(x)
 library(lme4)
 class(m1 <- glmer(cbind(incidence, size - incidence) ~ period + (1 | herd), 
   data = cbpp, family = binomial))
-.pval.merMod(m1)
 desc_.glmerMod(m1)
 coef0.merMod(m1)
 confint_.merMod(m1)

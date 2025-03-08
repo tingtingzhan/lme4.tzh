@@ -15,7 +15,6 @@
 #' library(lme4)
 #' class(m1 <- glmer(cbind(incidence, size - incidence) ~ period + (1 | herd), 
 #'   data = cbpp, family = binomial))
-#' .pval.merMod(m1)
 #' desc_.glmerMod(m1)
 #' coef0.merMod(m1)
 #' confint_.merMod(m1)
@@ -26,21 +25,11 @@
 #'   Orange, start = startvec))
 #' class(m2)
 #' @name s3_merMod
-
-
-#' @rdname s3_merMod
-#' @export
-.pval.merMod <- function(x) {
-  # 'glmerMod' inherits from 'merMod'
-  # 'nlmerMod' inherits from 'merMod'
-  x |> 
-    summary() |> #?lme4:::summary.merMod
-    .pval.summary.merMod()
-}
-
-#' @rdname s3_merMod
 #' @export
 .pval.summary.merMod <- function(x) {
+  # ('glmerMod' inherits from 'merMod')
+  # ('nlmerMod' inherits from 'merMod')
+  # returned value from ?lme4:::summary.merMod
   cf <- x$coefficients
   ret <- cf[, 'Pr(>|z|)'] # has error on 'nlmerMod' object!!
   names(ret) <- rownames(cf)
