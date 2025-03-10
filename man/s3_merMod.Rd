@@ -5,10 +5,10 @@
 \alias{.pval.summary.merMod}
 \alias{desc_.glmerMod}
 \alias{desc_.merMod}
-\alias{coef0.merMod}
+\alias{coef_.merMod}
 \alias{confint_.merMod}
 \alias{nobsText.merMod}
-\alias{coef0.rlmerMod}
+\alias{coef_.rlmerMod}
 \title{S3 Method Dispatches for \link[lme4]{merMod} Class}
 \usage{
 .pval.summary.merMod(x)
@@ -17,13 +17,13 @@ desc_.glmerMod(x)
 
 desc_.merMod(x)
 
-coef0.merMod(x)
+coef_.merMod(x)
 
 confint_.merMod(x, level = 0.95, method = "Wald", ...)
 
 nobsText.merMod(x)
 
-coef0.rlmerMod(x)
+coef_.rlmerMod(x)
 }
 \arguments{
 \item{x}{a \link[lme4]{merMod} object}
@@ -43,7 +43,7 @@ library(lme4)
 class(m1 <- glmer(cbind(incidence, size - incidence) ~ period + (1 | herd), 
   data = cbpp, family = binomial))
 desc_.glmerMod(m1)
-coef0.merMod(m1)
+coef_.merMod(m1)
 confint_.merMod(m1)
 nobsText.merMod(m1)
 

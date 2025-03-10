@@ -20,7 +20,7 @@
 #' @examples
 #' # ?robustlmm::rlmer
 #' library(robustlmm)
-#' rm1 = rlmer(Reaction ~ Days + (Days|Subject), data = sleepstudy,
+#' m = rlmer(Reaction ~ Days + (Days|Subject), data = sleepstudy,
 #'  rho.sigma.e = psi2propII(smoothPsi, k = 2.28),
 #'  rho.b = chgDefaults(smoothPsi, k = 5.14, s=10),
 #'  rho.sigma.b = chgDefaults(smoothPsi, k = 5.14, s=10))
@@ -40,7 +40,7 @@ desc_.rlmerMod <- function(x) {
 #' @rdname s3_merMod
 #' @importFrom nlme fixef
 #' @export
-coef0.rlmerMod <- function(x) fixef(x)
+coef_.rlmerMod <- function(x) fixef(x) # ?lme4:::fixef.merMod
 
 
 # ?robustlmm:::vcov.rlmerMod returns 'dpoMatrix' object, defined in \CRANpkg{Matrix}
@@ -51,8 +51,8 @@ coef0.rlmerMod <- function(x) fixef(x)
 #' @importFrom stats confint qnorm vcov
 #' @export confint.rlmerMod
 #' @export
-confint.rlmerMod <- stats:::confint.default
-body(confint.rlmerMod)[[2L]] <- quote(cf <- coef0.rlmerMod(object))
+confint.rlmerMod <- stats::confint.default
+body(confint.rlmerMod)[[2L]] <- quote(cf <- coef_.rlmerMod(object))
 body(confint.rlmerMod)[[7L]] <- quote(pct <- sprintf(fmt = '%.1f%%', 1e2*a))
 # ?stats:::.format_perc not exported
 body(confint.rlmerMod)[[10L]] <- quote(ses <- sqrt(diag(as.matrix(vcov(object))))[parm])

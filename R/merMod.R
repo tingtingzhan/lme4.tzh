@@ -18,7 +18,7 @@
 #' class(m1 <- glmer(cbind(incidence, size - incidence) ~ period + (1 | herd), 
 #'   data = cbpp, family = binomial))
 #' desc_.glmerMod(m1)
-#' coef0.merMod(m1)
+#' coef_.merMod(m1)
 #' confint_.merMod(m1)
 #' nobsText.merMod(m1)
 #' 
@@ -72,7 +72,7 @@ desc_.merMod <- function(x) {
 #' @rdname s3_merMod
 #' @importFrom nlme fixef
 #' @export
-coef0.merMod <- function(x) fixef(x) # ?lme4:::fixef.merMod
+coef_.merMod <- function(x) fixef(x) # ?lme4:::fixef.merMod
 
 
 # \link[lme4]{confint.merMod} is very slow with default `method = 'profile'`
@@ -82,7 +82,7 @@ coef0.merMod <- function(x) fixef(x) # ?lme4:::fixef.merMod
 #' @export
 confint_.merMod <- function(x, level = .95, method = 'Wald', ...) {
   ci <- confint.merMod(object = x, level = level, method = method, ...)
-  ret <- ci[names(coef0.merMod(x)), , drop = FALSE]
+  ret <- ci[names(coef_.merMod(x)), , drop = FALSE]
   attr(ret, which = 'conf.level') <- level
   return(ret)
 }
