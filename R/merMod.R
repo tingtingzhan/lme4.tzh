@@ -26,6 +26,7 @@
 #' (m2 <- nlmer(circumference ~ SSlogis(age, Asym, xmid, scal) ~ Asym|Tree,
 #'   Orange, start = startvec))
 #' class(m2)
+#' desc_.merMod(m2)
 #' @name s3_merMod
 #' @export
 .pval.summary.merMod <- function(x) {
@@ -63,7 +64,10 @@ desc_.glmerMod <- function(x) {
 #' @export
 desc_.merMod <- function(x) {
   # see inside ?lme4:::print.merMod
-  tolower(gsub(' fit by .*$', replacement = '', methTitle(x@devcomp$dims)))
+  x@devcomp$dims |> 
+    methTitle() |>
+    gsub(pattern = ' fit by .*$', replacement = '') |> 
+    tolower()
 }
 
 

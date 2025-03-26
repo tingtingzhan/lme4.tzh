@@ -60,9 +60,13 @@ environment(confint.rlmerMod) <- asNamespace('lme4.tzh') # important!
 
 
 
-# .pval.rlmerMod
 # cran.r-project.org/web/packages/robustlmm/vignettes/rlmer.pdf  # Section 5. Further information
 # 'We avoided the topic of robust testing for linear mixed-eﬀects models in this tutorial.'
+#' @rdname s3_rlmerMod
+#' @export
+.pval.summary.rlmerMod <- function(x) {
+  stop('not available as of 2023-12-10') # packageDate("robustlmm")
+}
 
 
 
@@ -71,7 +75,8 @@ environment(confint.rlmerMod) <- asNamespace('lme4.tzh') # important!
 #' @export
 ngrps.rlmerMod <- function(object, ...) {
   # same as ?lme4:::ngrps.merMod
-  vapply(object@flist, FUN = nlevels, FUN.VALUE = 0L)
+  object@flist |> 
+    vapply(FUN = nlevels, FUN.VALUE = 0L)
 }
 
 

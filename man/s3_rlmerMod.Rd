@@ -4,6 +4,7 @@
 \alias{s3_rlmerMod}
 \alias{desc_.rlmerMod}
 \alias{confint.rlmerMod}
+\alias{.pval.summary.rlmerMod}
 \alias{ngrps.rlmerMod}
 \alias{nobsText.rlmerMod}
 \title{Additional S3 Method Dispatches for \link[robustlmm]{rlmer} Return}
@@ -11,6 +12,8 @@
 desc_.rlmerMod(x)
 
 \method{confint}{rlmerMod}(object, parm, level = 0.95, ...)
+
+.pval.summary.rlmerMod(x)
 
 \method{ngrps}{rlmerMod}(object, ...)
 

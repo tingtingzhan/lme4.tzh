@@ -3,6 +3,7 @@
 S3method(confint,rlmerMod)
 S3method(ngrps,rlmerMod)
 export(.pval.summary.merMod)
+export(.pval.summary.rlmerMod)
 export(coef_.merMod)
 export(coef_.rlmerMod)
 export(confint.rlmerMod)

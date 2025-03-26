@@ -51,4 +51,5 @@ startvec = c(Asym = 200, xmid = 725, scal = 350)
 (m2 <- nlmer(circumference ~ SSlogis(age, Asym, xmid, scal) ~ Asym|Tree,
   Orange, start = startvec))
 class(m2)
+desc_.merMod(m2)
 }
