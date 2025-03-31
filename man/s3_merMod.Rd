@@ -3,6 +3,7 @@
 \name{s3_merMod}
 \alias{s3_merMod}
 \alias{.pval.summary.merMod}
+\alias{vterms.merMod}
 \alias{desc_.glmerMod}
 \alias{desc_.merMod}
 \alias{coef_.merMod}
@@ -12,6 +13,8 @@
 \title{S3 Method Dispatches for \link[lme4]{merMod} Class}
 \usage{
 .pval.summary.merMod(x)
+
+vterms.merMod(x)
 
 desc_.glmerMod(x)
 
@@ -39,7 +42,6 @@ coef_.rlmerMod(x)
 }
 \examples{
 # see ?lme4::glmer or ?lme4::cbpp
-library(lme4)
 class(m1 <- glmer(cbind(incidence, size - incidence) ~ period + (1 | herd), 
   data = cbpp, family = binomial))
 desc_.glmerMod(m1)
@@ -52,4 +54,8 @@ startvec = c(Asym = 200, xmid = 725, scal = 350)
   Orange, start = startvec))
 class(m2)
 desc_.merMod(m2)
+library(HSAUR3)
+m = glmer(outcome ~ treatment + visit + (1|patientID), data=toenail, family=binomial, nAGQ=20)
+m |> vterms.merMod()
 }
+\keyword{internal}
