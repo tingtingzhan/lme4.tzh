@@ -14,6 +14,7 @@
 #' 
 #' @examples
 #' # see ?lme4::glmer or ?lme4::cbpp
+#' library(lme4)
 #' class(m1 <- glmer(cbind(incidence, size - incidence) ~ period + (1 | herd), 
 #'   data = cbpp, family = binomial))
 #' desc_.glmerMod(m1)
@@ -42,6 +43,7 @@
 
 #' @rdname s3_merMod
 #' @examples
+#' library(lme4)
 #' library(HSAUR3)
 #' m = glmer(outcome ~ treatment + visit + (1|patientID), data=toenail, family=binomial, nAGQ=20)
 #' m |> vterms.merMod()
