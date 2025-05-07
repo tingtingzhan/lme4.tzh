@@ -2,7 +2,7 @@ Package: lme4.tzh
 Type: Package
 Title: Tingting's extension of lme4 package
 Version: 0.1.0
-Date: 2025-03-17
+Date: 2025-05-07
 Description: Tingting's extension of lme4 package.
 Authors@R: c(person(given = 'Tingting', family = 'Zhan', role = c('aut', 'cre'), email =
           'tingtingzhan@gmail.com', comment = c(ORCID = '0000-0001-9971-4844')))

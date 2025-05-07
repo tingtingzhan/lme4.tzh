@@ -74,18 +74,8 @@ vterms.merMod <- function(x) {
 #' @rdname s3_merMod
 #' @importFrom stats family
 #' @export
-desc_.glmerMod <- function(x) {
-  fam <- family(x) # ?lme4:::family.merMod
-  switch(fam$family, binomial = {
-    switch(fam$link, logit = {
-      return('mixed logistic regression')
-    }, stop('write more'))
-  }, gaussian = {
-    switch(fam$link, log = {
-      'generalized linear mixed regression with log-link'
-    }, stop('write more'))
-  }, stop('write more'))
-}
+desc_.glmerMod <- function(x) 'generalized linear mixed regression'
+
 
 #' @rdname s3_merMod
 #' @importFrom lme4 methTitle
