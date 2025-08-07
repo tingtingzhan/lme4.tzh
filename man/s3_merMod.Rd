@@ -56,13 +56,6 @@ startvec = c(Asym = 200, xmid = 725, scal = 350)
 class(m2)
 desc_.merMod(m2)
 
-
-library(rmd.tzh); library(ecip) 
-list(
- '`glmerMod`' = glmer(cbind(incidence, size-incidence) ~ period + (1|herd), 
-     data = cbpp, family = binomial)
-) |> render_(file = 'glmerMod')
-  
 library(lme4)
 library(HSAUR3)
 m = glmer(outcome ~ treatment + visit + (1|patientID), data=toenail, family=binomial, nAGQ=20)

@@ -28,13 +28,6 @@
 #' class(m2)
 #' desc_.merMod(m2)
 #' 
-#' 
-#' library(rmd.tzh); library(ecip) 
-#' list(
-#'  '`glmerMod`' = glmer(cbind(incidence, size-incidence) ~ period + (1|herd), 
-#'      data = cbpp, family = binomial)
-#' ) |> render_(file = 'glmerMod')
-#'   
 #' @keywords internal
 #' @name s3_merMod
 #' @importFrom ecip .pval
@@ -179,6 +172,27 @@ dataClasses.merMod <- function(x) {
   # seems wrong for 'nlmerMod' object..
   # 'glmerMod' and 'lmerMod' should be correct
 }
+
+
+
+
+#' @title R Markdown Lines for `merMod`
+#' 
+#' @param x,xnm,... ..
+#' 
+#' @examples
+#' library(rmd.tzh); library(ecip) 
+#' list(
+#'  '`glmerMod`' = glmer(cbind(incidence, size-incidence) ~ period + (1|herd), 
+#'      data = cbpp, family = binomial)
+#' ) |> render_(file = 'glmerMod')
+#'   
+#' @keywords internal
+#' @importFrom rmd.tzh md_
+#' @importFrom ecip md_ecip
+#' @export md_.merMod
+#' @export
+md_.merMod <- md_ecip
 
 
 
