@@ -12,21 +12,21 @@
 \alias{coef_.rlmerMod}
 \title{S3 Method Dispatches for \link[lme4]{merMod} Class}
 \usage{
-.pval.summary.merMod(x)
+\method{.pval}{summary.merMod}(x)
 
-vterms.merMod(x)
+\method{vterms}{merMod}(x)
 
-desc_.glmerMod(x)
+\method{desc_}{glmerMod}(x)
 
-desc_.merMod(x)
+\method{desc_}{merMod}(x)
 
-coef_.merMod(x)
+\method{coef_}{merMod}(x)
 
-confint_.merMod(x, level = 0.95, method = "Wald", ...)
+\method{confint_}{merMod}(x, level = 0.95, method = "Wald", ...)
 
-nobsText.merMod(x)
+\method{nobsText}{merMod}(x)
 
-coef_.rlmerMod(x)
+\method{coef_}{rlmerMod}(x)
 }
 \arguments{
 \item{x}{a \link[lme4]{merMod} object}
@@ -55,6 +55,14 @@ startvec = c(Asym = 200, xmid = 725, scal = 350)
   Orange, start = startvec))
 class(m2)
 desc_.merMod(m2)
+
+
+library(rmd.tzh); library(ecip) 
+list(
+ '`glmerMod`' = glmer(cbind(incidence, size-incidence) ~ period + (1|herd), 
+     data = cbpp, family = binomial)
+) |> render_(file = 'glmerMod')
+  
 library(lme4)
 library(HSAUR3)
 m = glmer(outcome ~ treatment + visit + (1|patientID), data=toenail, family=binomial, nAGQ=20)

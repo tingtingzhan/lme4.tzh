@@ -9,15 +9,15 @@
 \alias{nobsText.rlmerMod}
 \title{Additional S3 Method Dispatches for \link[robustlmm]{rlmer} Return}
 \usage{
-desc_.rlmerMod(x)
+\method{desc_}{rlmerMod}(x)
 
 \method{confint}{rlmerMod}(object, parm, level = 0.95, ...)
 
-.pval.summary.rlmerMod(x)
+\method{.pval}{summary.rlmerMod}(x)
 
 \method{ngrps}{rlmerMod}(object, ...)
 
-nobsText.rlmerMod(x)
+\method{nobsText}{rlmerMod}(x)
 }
 \arguments{
 \item{x, object}{a \link[lme4]{merMod} object}

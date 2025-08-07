@@ -27,8 +27,19 @@
 #'   Orange, start = startvec))
 #' class(m2)
 #' desc_.merMod(m2)
+#' 
+#' 
+#' library(rmd.tzh); library(ecip) 
+#' list(
+#'  '`glmerMod`' = glmer(cbind(incidence, size-incidence) ~ period + (1|herd), 
+#'      data = cbpp, family = binomial)
+#' ) |> render_(file = 'glmerMod')
+#'   
 #' @keywords internal
 #' @name s3_merMod
+#' @importFrom ecip .pval
+#' @method .pval summary.merMod
+#' @export .pval.summary.merMod
 #' @export
 .pval.summary.merMod <- function(x) {
   # ('glmerMod' inherits from 'merMod')
@@ -48,6 +59,8 @@
 #' m = glmer(outcome ~ treatment + visit + (1|patientID), data=toenail, family=binomial, nAGQ=20)
 #' m |> vterms.merMod()
 #' @importFrom stats formula terms
+#' @importFrom ecip vterms
+#' @export vterms.merMod
 #' @export
 vterms.merMod <- function(x) {
   
@@ -73,12 +86,16 @@ vterms.merMod <- function(x) {
 
 #' @rdname s3_merMod
 #' @importFrom stats family
+#' @importFrom ecip desc_
+#' @export desc_.glmerMod
 #' @export
 desc_.glmerMod <- function(x) 'generalized linear mixed regression'
 
 
 #' @rdname s3_merMod
 #' @importFrom lme4 methTitle
+#' @importFrom ecip desc_
+#' @export desc_.merMod
 #' @export
 desc_.merMod <- function(x) {
   # see inside ?lme4:::print.merMod
@@ -93,6 +110,8 @@ desc_.merMod <- function(x) {
 # ?lme4:::coef.merMod not want I need
 #' @rdname s3_merMod
 #' @importFrom nlme fixef
+#' @importFrom ecip coef_
+#' @export coef_.merMod
 #' @export
 coef_.merMod <- function(x) fixef(x) # ?lme4:::fixef.merMod
 
@@ -101,6 +120,8 @@ coef_.merMod <- function(x) fixef(x) # ?lme4:::fixef.merMod
 # \link[lme4]{confint.merMod} returns 'sigmas' and cannot be suppressed
 #' @rdname s3_merMod
 #' @importFrom lme4 confint.merMod
+#' @importFrom ecip confint_
+#' @export confint_.merMod
 #' @export
 confint_.merMod <- function(x, level = .95, method = 'Wald', ...) {
   ci <- confint.merMod(object = x, level = level, method = method, ...)
@@ -113,6 +134,8 @@ confint_.merMod <- function(x, level = .95, method = 'Wald', ...) {
 
 #' @rdname s3_merMod
 #' @importFrom lme4 ngrps
+#' @importFrom ecip nobsText
+#' @export nobsText.merMod
 #' @export
 nobsText.merMod <- function(x) {
   # ?lme4:::.prt.grps (from ?lme4:::print.merMod)
@@ -132,6 +155,30 @@ nobsText.merMod <- function(x) {
 #vcov.VarCorr.merMod <- function(object, ...) unclass(object) # return object of ?lme4:::VarCorr.merMod
 
 
+
+
+
+# requires [dataClasses.terms()]; do *not* move to \pkg{lme4.tzh}
+#' @title \link[ecip]{dataClasses} for `merMod`
+#' 
+#' @param x ..
+#' 
+#' Function `lme4:::terms.merMod()` return does not have `'dataClasses'` attribute (as of 2025-03-25).
+#' 
+#' @keywords internal
+#' @importFrom stats model.frame
+#' @importFrom ecip dataClasses dataClasses.terms
+#' @export dataClasses.merMod
+#' @export
+dataClasses.merMod <- function(x) {
+  x |>
+    model.frame() |> # ?lme4:::model.frame.merMod
+    attr(which = 'terms', exact = TRUE) |>
+    # do *not* overwrite ?lme4:::terms.merMod (which does not have dataClasses)
+    dataClasses.terms()
+  # seems wrong for 'nlmerMod' object..
+  # 'glmerMod' and 'lmerMod' should be correct
+}
 
 
 
