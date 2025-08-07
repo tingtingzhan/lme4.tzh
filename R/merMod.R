@@ -181,11 +181,11 @@ dataClasses.merMod <- function(x) {
 #' @param x,xnm,... ..
 #' 
 #' @examples
-#' library(rmd.tzh); library(ecip) 
+#' library(ecip) 
 #' list(
 #'  '`glmerMod`' = glmer(cbind(incidence, size-incidence) ~ period + (1|herd), 
 #'      data = cbpp, family = binomial)
-#' ) |> render_(file = 'glmerMod')
+#' ) |> rmd.tzh::render_(file = 'glmerMod')
 #'   
 #' @keywords internal
 #' @importFrom rmd.tzh md_
