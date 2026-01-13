@@ -151,7 +151,6 @@ nobsText.merMod <- function(x) {
 
 
 
-# requires [dataClasses.terms()]; do *not* move to \pkg{lme4.tzh}
 #' @title \link[ecip]{dataClasses} for `merMod`
 #' 
 #' @param x ..
