@@ -25,6 +25,8 @@
 #'  rho.b = chgDefaults(smoothPsi, k = 5.14, s=10),
 #'  rho.sigma.b = chgDefaults(smoothPsi, k = 5.14, s=10))
 #' 
+#' ecip::coef_(m)
+#' confint(m)
 #' @name s3_rlmerMod
 
 
@@ -37,7 +39,7 @@ desc_.rlmerMod <- function(x) {
 }
 
 # ?robustlmm:::coef.rlmerMod not what I want
-#' @rdname s3_merMod
+#' @rdname s3_rlmerMod
 #' @importFrom nlme fixef
 #' @export
 coef_.rlmerMod <- function(x) fixef(x) # ?lme4:::fixef.merMod
@@ -56,7 +58,7 @@ body(confint.rlmerMod)[[2L]] <- quote(cf <- coef_.rlmerMod(object))
 body(confint.rlmerMod)[[7L]] <- quote(pct <- sprintf(fmt = '%.1f%%', 1e2*a))
 # ?stats:::.format_perc not exported
 body(confint.rlmerMod)[[10L]] <- quote(ses <- sqrt(diag(as.matrix(vcov(object))))[parm])
-environment(confint.rlmerMod) <- asNamespace('lme4.tzh') # important!
+environment(confint.rlmerMod) <- asNamespace(ns = 'lme4.tzh') # important!
 
 
 

@@ -3,6 +3,7 @@
 \name{s3_rlmerMod}
 \alias{s3_rlmerMod}
 \alias{desc_.rlmerMod}
+\alias{coef_.rlmerMod}
 \alias{confint.rlmerMod}
 \alias{.pval.summary.rlmerMod}
 \alias{ngrps.rlmerMod}
@@ -10,6 +11,8 @@
 \title{Additional S3 Method Dispatches for \link[robustlmm]{rlmer} Return}
 \usage{
 \method{desc_}{rlmerMod}(x)
+
+\method{coef_}{rlmerMod}(x)
 
 \method{confint}{rlmerMod}(object, parm, level = 0.95, ...)
 
@@ -42,4 +45,6 @@ m = rlmer(Reaction ~ Days + (Days|Subject), data = sleepstudy,
  rho.b = chgDefaults(smoothPsi, k = 5.14, s=10),
  rho.sigma.b = chgDefaults(smoothPsi, k = 5.14, s=10))
 
+ecip::coef_(m)
+confint(m)
 }

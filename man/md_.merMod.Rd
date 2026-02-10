@@ -17,7 +17,7 @@ library(ecip)
 list(
  '`glmerMod`' = glmer(cbind(incidence, size-incidence) ~ period + (1|herd), 
      data = cbpp, family = binomial)
-) |> rmd.tzh::render_(file = 'glmerMod')
+) |> fastmd::render_(file = 'glmerMod')
   
 }
 \keyword{internal}

@@ -184,10 +184,10 @@ dataClasses.merMod <- function(x) {
 #' list(
 #'  '`glmerMod`' = glmer(cbind(incidence, size-incidence) ~ period + (1|herd), 
 #'      data = cbpp, family = binomial)
-#' ) |> rmd.tzh::render_(file = 'glmerMod')
+#' ) |> fastmd::render_(file = 'glmerMod')
 #'   
 #' @keywords internal
-#' @importFrom rmd.tzh md_
+#' @importFrom fastmd md_
 #' @importFrom ecip md_ecip
 #' @export md_.merMod
 #' @export

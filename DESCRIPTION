@@ -11,5 +11,5 @@ RoxygenNote: 7.3.3
 Encoding: UTF-8
 License: GPL-2
 Depends: R (>= 4.5), lme4 (== 1.1.38)
-Imports: nlme (== 3.1.168), rmd.tzh, ecip
-Suggests: robustlmm (== 3.3.2), HSAUR3 (== 1.0.15)
+Imports: nlme (== 3.1.168), fastmd, ecip
+Suggests: robustlmm (== 3.4.2), HSAUR3 (== 1.0.15)
