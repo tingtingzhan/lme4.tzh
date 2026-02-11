@@ -50,7 +50,6 @@ coef_.rlmerMod <- function(x) fixef(x) # ?lme4:::fixef.merMod
 # however ?robustlmm:::coef.rlmerMod is crazy
 # therefore ?stats:::confint.default fails
 #' @rdname s3_rlmerMod
-#' @importFrom stats confint qnorm vcov
 #' @export confint.rlmerMod
 #' @export
 confint.rlmerMod <- stats::confint.default
@@ -71,9 +70,8 @@ environment(confint.rlmerMod) <- asNamespace(ns = 'lme4.tzh') # important!
 }
 
 
-
+# generic function ?lme4::ngrps
 #' @rdname s3_rlmerMod
-#' @importFrom lme4 ngrps
 #' @export
 ngrps.rlmerMod <- function(object, ...) {
   # same as ?lme4:::ngrps.merMod

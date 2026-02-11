@@ -51,7 +51,6 @@
 #' library(HSAUR3)
 #' m = glmer(outcome ~ treatment + visit + (1|patientID), data=toenail, family=binomial, nAGQ=20)
 #' m |> vterms.merMod()
-#' @importFrom stats formula terms
 #' @importFrom ecip vterms
 #' @export vterms.merMod
 #' @export
@@ -78,7 +77,6 @@ vterms.merMod <- function(x) {
 
 
 #' @rdname s3_merMod
-#' @importFrom stats family
 #' @importFrom ecip desc_
 #' @export desc_.glmerMod
 #' @export
@@ -86,14 +84,13 @@ desc_.glmerMod <- function(x) 'generalized linear mixed regression'
 
 
 #' @rdname s3_merMod
-#' @importFrom lme4 methTitle
 #' @importFrom ecip desc_
 #' @export desc_.merMod
 #' @export
 desc_.merMod <- function(x) {
   # see inside ?lme4:::print.merMod
   x@devcomp$dims |> 
-    methTitle() |>
+    methTitle() |> # lme4::methTitle
     gsub(pattern = ' fit by .*$', replacement = '') |> 
     tolower()
 }
@@ -112,12 +109,12 @@ coef_.merMod <- function(x) fixef(x) # ?lme4:::fixef.merMod
 # \link[lme4]{confint.merMod} is very slow with default `method = 'profile'`
 # \link[lme4]{confint.merMod} returns 'sigmas' and cannot be suppressed
 #' @rdname s3_merMod
-#' @importFrom lme4 confint.merMod
 #' @importFrom ecip confint_
 #' @export confint_.merMod
 #' @export
 confint_.merMod <- function(x, level = .95, method = 'Wald', ...) {
-  ci <- confint.merMod(object = x, level = level, method = method, ...)
+  ci <- x |>
+    confint.merMod(level = level, method = method, ...) # ?lme4::confint.merMod
   ret <- ci[names(coef_.merMod(x)), , drop = FALSE]
   attr(ret, which = 'conf.level') <- level
   return(ret)
@@ -126,7 +123,6 @@ confint_.merMod <- function(x, level = .95, method = 'Wald', ...) {
 
 
 #' @rdname s3_merMod
-#' @importFrom lme4 ngrps
 #' @importFrom ecip nobsText
 #' @export nobsText.merMod
 #' @export
@@ -158,7 +154,6 @@ nobsText.merMod <- function(x) {
 #' Function `lme4:::terms.merMod()` return does not have `'dataClasses'` attribute (as of 2025-03-25).
 #' 
 #' @keywords internal
-#' @importFrom stats model.frame
 #' @importFrom ecip dataClasses dataClasses.terms
 #' @export dataClasses.merMod
 #' @export
