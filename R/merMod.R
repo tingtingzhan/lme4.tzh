@@ -179,7 +179,7 @@ dataClasses.merMod <- function(x) {
 #' list(
 #'  '`glmerMod`' = glmer(cbind(incidence, size-incidence) ~ period + (1|herd), 
 #'      data = cbpp, family = binomial)
-#' ) |> fastmd::render2html(file = 'glmerMod')
+#' ) |> fastmd::render2html()
 #'   
 #' @keywords internal
 #' @importFrom fastmd md_
