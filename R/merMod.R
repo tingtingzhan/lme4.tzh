@@ -28,6 +28,10 @@
 #' class(m2)
 #' desc_.merMod(m2)
 #' 
+#' library(ecip); list(
+#'  '`glmerMod`' = glmer(cbind(incidence, size-incidence) ~ period + (1|herd), 
+#'      data = cbpp, family = binomial)
+#' ) |> fastmd::render2html()
 #' @keywords internal
 #' @name s3_merMod
 #' @importFrom ecip .pval
@@ -170,21 +174,8 @@ dataClasses.merMod <- function(x) {
 
 
 
-#' @title R Markdown Lines for `merMod`
-#' 
-#' @param x,xnm,... ..
-#' 
-#' @examples
-#' library(ecip) 
-#' list(
-#'  '`glmerMod`' = glmer(cbind(incidence, size-incidence) ~ period + (1|herd), 
-#'      data = cbpp, family = binomial)
-#' ) |> fastmd::render2html()
-#'   
-#' @keywords internal
 #' @importFrom fastmd md_
 #' @importFrom ecip md_ecip
-#' @export md_.merMod
 #' @export
 md_.merMod <- md_ecip
 
